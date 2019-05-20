@@ -1,0 +1,10 @@
+<div class="alert alert-danger" ng-show="data.orderError">
+		Error ({{data.orderError.status}}). The order could not be placed.
+	<a href="#/placeorder" class="alert-link">Click here to try again</a>
+</div>
+ 
+<div class="well" ng-hide="data.orderError">
+	<h2>Thanks!</h2>
+		Thank you for your order. We will work to get this out today if order {{data.orderId}} was placed before 12:00PM EST. If not the order will be delivered ASAP on the next 
+		working business day.
+</div>

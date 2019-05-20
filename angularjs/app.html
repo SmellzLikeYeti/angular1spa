@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="jenkinsFlowers">
+<head>
+	<title>JenkinsFlowers</title>
+	<script src="angular.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap-theme.css">
+	<script>
+		angular.module("jenkinsFlowers", ["customFilters", "cart", "ngRoute"])
+		.config(function ($routeProvider) {
+
+			$routeProvider.when("/complete",{
+				templateUrl: "/views/thanks.html"
+			});
+
+			$routeProvider.when("/placeorder" ,{
+				templateUrl: "/views/placeOrder.html"
+			});
+
+			$routeProvider.when("/checkout", {
+				templateUrl: "/views/checkoutSummary.html"
+			});
+
+			$routeProvider.when("/products", {
+				templateUrl: "/views/flowerList.html"
+			});
+
+			$routeProvider.otherwise({
+				templateUrl: "/views/flowerList.html"
+			});
+
+		});
+	</script>
+	<script type="text/javascript" src="controllers/jenkinsFlowers.js"></script>
+	<script type="text/javascript" src="filters/customFilters.js"></script>
+	<script type="text/javascript" src="controllers/flowerListControllers.js"></script>
+	<script type="text/javascript" src="components/cart/cart.js"></script>
+	<script type="text/javascript" src="ngmodules/angular-route.js"></script>
+	<script type="text/javascript" src="controllers/checkoutControllers.js"></script>
+</head>
+
+<body ng-controller="jenkinsFlowersCtrl">
+	<div class="navbar navbar-inverse">
+		<a class="navbar-brand" href="#">Jenkin's Flowers</a>
+		<cart-summary />
+	</div>
+
+	<div class="alert alert-danger" ng-show="data.error">
+	ERROR ({{data.error.status}}). The product data has not been loaded.
+	<a href="/app.html" class="alert-link">Try Again</a>
+	</div>
+
+	<ng-view />
+	
+</body>
+
+</html>
